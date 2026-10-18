@@ -7,10 +7,12 @@ import {
   DeleteDateColumn,
   Index,
   ManyToOne,
+  OneToMany,
   JoinColumn,
 } from 'typeorm';
 import { ActionType } from '../../../common/enums';
 import { Plan } from './plan.entity';
+import { ActionLog } from './action_log.entity';
 
 @Entity({ name: 'plan_actions' })
 export class PlanAction {
@@ -85,4 +87,8 @@ export class PlanAction {
   })
   @JoinColumn({ name: 'plan_id' })
   plan: Plan;
+
+  /** Danh sách nhật ký thực hiện hành động này */
+  @OneToMany(() => ActionLog, (actionLog) => actionLog.action)
+  actionLogs: ActionLog[];
 }
