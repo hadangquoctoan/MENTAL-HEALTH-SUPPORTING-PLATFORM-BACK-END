@@ -6,3 +6,4 @@ export * from './doctors/doctor_profile.entity';
 export * from './doctors/doctor_assignment.entity';
 export * from './doctors/doctor_note.entity';
 export * from './doctors/doctor_notification.entity';
+export * from './plans/plan.entity';
