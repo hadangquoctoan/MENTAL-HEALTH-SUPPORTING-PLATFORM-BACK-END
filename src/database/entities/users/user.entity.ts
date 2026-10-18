@@ -12,6 +12,7 @@ import {
 import { UserRole, Gender, UserStatus } from '../../../common/enums';
 import { AuditLog } from '../audit-logs/audit-log.entity';
 import { PatientProfile } from '../patients/patient_profile.entity';
+import { DoctorProfile } from '../doctors/doctor_profile.entity';
 
 @Entity({ name: 'users' })
 export class User {
@@ -116,4 +117,8 @@ export class User {
   /** Hồ sơ bệnh nhân (1 - 1, nếu role là PATIENT) */
   @OneToOne(() => PatientProfile, (patientProfile) => patientProfile.user)
   patientProfile?: PatientProfile;
+
+  /** Hồ sơ bác sĩ (1 - 1, nếu role là DOCTOR) */
+  @OneToOne(() => DoctorProfile, (doctorProfile) => doctorProfile.user)
+  doctorProfile?: DoctorProfile;
 }
