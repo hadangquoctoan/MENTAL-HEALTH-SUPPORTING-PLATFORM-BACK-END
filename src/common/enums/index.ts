@@ -5,6 +5,12 @@ export enum UserRole {
   ADMIN = 'ADMIN',
 }
 
+export enum UserStatus {
+  ACTIVE = 'ACTIVE',
+  INACTIVE = 'INACTIVE',
+  BLOCKED = 'BLOCKED',
+}
+
 export enum Gender {
   MALE = 'MALE',
   FEMALE = 'FEMALE',

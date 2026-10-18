@@ -7,6 +7,7 @@ import {
   ManyToOne,
   JoinColumn,
 } from 'typeorm';
+import { User } from '../users/user.entity';
 
 @Entity({ name: 'audit_logs' })
 @Index('idx_audit_logs_entity', ['entityType', 'entityId'])
@@ -20,6 +21,7 @@ export class AuditLog {
   actorId: string;
 
   @Column({
+    name: 'action',
     type: 'varchar',
     length: 255,
     comment: 'CREATE, UPDATE, DELETE, LOGIN, etc.',
@@ -67,7 +69,10 @@ export class AuditLog {
   createdAt: Date;
 
   // Quan hệ với bảng users (khóa ngoại fk_audit_logs_actor)
-  @ManyToOne('User', { onDelete: 'RESTRICT', onUpdate: 'CASCADE' })
+  @ManyToOne(() => User, (user) => user.auditLogs, {
+    onDelete: 'RESTRICT',
+    onUpdate: 'CASCADE',
+  })
   @JoinColumn({ name: 'actor_id' })
-  actor?: any;
+  actor: User;
 }
