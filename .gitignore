@@ -1,0 +1,107 @@
+# =============================================================================
+# Dependencies & Package Managers
+# =============================================================================
+node_modules/
+jspm_packages/
+.npm
+.yarn/cache
+.yarn/unplugged
+.pnp.*
+
+# =============================================================================
+# Build & Compiled Output
+# =============================================================================
+/dist
+/build
+/out
+*.tsbuildinfo
+.nest/
+
+# =============================================================================
+# Environment & Sensitive Files
+# =============================================================================
+.env
+.env.*
+!.env.example
+!.env.test
+
+# =============================================================================
+# Logs & Runtime
+# =============================================================================
+logs/
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+lerna-debug.log*
+.pnpm-debug.log*
+pids/
+*.pid
+*.seed
+*.pid.lock
+
+# =============================================================================
+# Testing & Code Coverage
+# =============================================================================
+coverage/
+.nyc_output/
+*.lcov
+
+# =============================================================================
+# Docker & Local Data Persistence
+# =============================================================================
+# Bỏ qua dữ liệu volume nếu vô tình mount vào thư mục làm việc
+mysql_data/
+redis_data/
+*.sqlite
+*.sqlite-journal
+
+# =============================================================================
+# Temporary & Backup Files
+# =============================================================================
+tmp/
+temp/
+*.tmp
+*.temp
+*.bak
+*.swp
+*.swo
+*~
+
+# =============================================================================
+# Editor & IDE Configs
+# =============================================================================
+.vscode/*
+!.vscode/settings.json
+!.vscode/tasks.json
+!.vscode/launch.json
+!.vscode/extensions.json
+.idea/
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sublime-workspace
+*.sublime-project
+
+# =============================================================================
+# Operating System Files
+# =============================================================================
+# Windows
+Thumbs.db
+Thumbs.db:encryptable
+ehthumbs.db
+ehthumbs_vista.db
+desktop.ini
+$RECYCLE.BIN/
+
+# macOS
+.DS_Store
+.AppleDouble
+.LSOverride
+._*
+.Spotlight-V100
+.Trashes
+
+# Linux
+.directory
