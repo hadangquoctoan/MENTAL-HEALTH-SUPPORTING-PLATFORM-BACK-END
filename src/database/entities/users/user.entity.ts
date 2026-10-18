@@ -59,9 +59,9 @@ export class User {
     name: 'gender',
     type: 'enum',
     enum: Gender,
-    nullable: true,
+    nullable: false,
   })
-  gender: Gender | null;
+  gender: Gender;
 
   /** Địa chỉ cư trú */
   @Column({
