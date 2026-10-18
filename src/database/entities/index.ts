@@ -11,3 +11,4 @@ export * from './plans/plan_action.entity';
 export * from './plans/action_log.entity';
 export * from './plans/reminder_log.entity';
 export * from './plans/medication.entity';
+export * from './check-ins/check_in.entity';

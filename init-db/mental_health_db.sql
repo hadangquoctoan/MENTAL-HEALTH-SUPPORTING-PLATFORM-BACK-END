@@ -95,7 +95,7 @@ CREATE TABLE `chat_sessions` (
 CREATE TABLE `check_ins` (
   `id` bigint NOT NULL,
   `patient_id` bigint NOT NULL,
-  `mood` varchar(50) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `mood` varchar(50) COLLATE utf8mb4_unicode_ci NOT NULL,
   `stress_level` enum('VERY_LOW','LOW','MODERATE','HIGH','VERY_HIGH') COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `note` text COLLATE utf8mb4_unicode_ci,
   `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
