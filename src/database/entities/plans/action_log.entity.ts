@@ -6,11 +6,13 @@ import {
   UpdateDateColumn,
   Index,
   ManyToOne,
+  OneToMany,
   JoinColumn,
 } from 'typeorm';
 import { ActionLogStatus } from '../../../common/enums';
 import { User } from '../users/user.entity';
 import { PlanAction } from './plan_action.entity';
+import { ReminderLog } from './reminder_log.entity';
 
 @Entity({ name: 'action_logs' })
 @Index('idx_action_logs_patient_status', ['patientId', 'status'])
@@ -97,4 +99,8 @@ export class ActionLog {
   })
   @JoinColumn({ name: 'patient_id' })
   patient: User;
+
+  /** Danh sách lời nhắc được gửi cho nhật ký hành động này */
+  @OneToMany(() => ReminderLog, (reminder) => reminder.actionLog)
+  reminderLogs: ReminderLog[];
 }
