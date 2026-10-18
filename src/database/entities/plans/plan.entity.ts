@@ -7,10 +7,12 @@ import {
   DeleteDateColumn,
   Index,
   ManyToOne,
+  OneToMany,
   JoinColumn,
 } from 'typeorm';
 import { PlanStatus } from '../../../common/enums';
 import { User } from '../users/user.entity';
+import { PlanAction } from './plan_action.entity';
 
 @Entity({ name: 'plans' })
 @Index('idx_plans_patient_status', ['patientId', 'status'])
@@ -119,4 +121,8 @@ export class Plan {
   })
   @JoinColumn({ name: 'doctor_id' })
   doctor: User;
+
+  /** Danh sách các hành động trong kế hoạch */
+  @OneToMany(() => PlanAction, (action) => action.plan)
+  actions: PlanAction[];
 }
