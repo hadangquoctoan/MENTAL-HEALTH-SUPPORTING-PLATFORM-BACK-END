@@ -7,9 +7,11 @@ import {
   DeleteDateColumn,
   Index,
   OneToMany,
+  OneToOne,
 } from 'typeorm';
 import { UserRole, Gender, UserStatus } from '../../../common/enums';
 import { AuditLog } from '../audit-logs/audit-log.entity';
+import { PatientProfile } from '../patients/patient_profile.entity';
 
 @Entity({ name: 'users' })
 export class User {
@@ -110,4 +112,8 @@ export class User {
   /** Danh sách lịch sử kiểm toán do user này thực hiện */
   @OneToMany(() => AuditLog, (auditLog) => auditLog.actor)
   auditLogs: AuditLog[];
+
+  /** Hồ sơ bệnh nhân (1 - 1, nếu role là PATIENT) */
+  @OneToOne(() => PatientProfile, (patientProfile) => patientProfile.user)
+  patientProfile?: PatientProfile;
 }
