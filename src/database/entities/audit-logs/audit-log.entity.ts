@@ -17,7 +17,11 @@ export class AuditLog {
   id: string;
 
   @Index('idx_audit_logs_actor')
-  @Column({ name: 'actor_id', type: 'bigint', comment: 'Người thực hiện hành động' })
+  @Column({
+    name: 'actor_id',
+    type: 'bigint',
+    comment: 'Người thực hiện hành động',
+  })
   actorId: string;
 
   @Column({
@@ -46,7 +50,7 @@ export class AuditLog {
 
   @Column({
     name: 'old_value',
-    type: 'json',
+    type: 'jsonb',
     nullable: true,
     comment: 'Giá trị cũ trước khi thay đổi',
   })
@@ -54,7 +58,7 @@ export class AuditLog {
 
   @Column({
     name: 'new_value',
-    type: 'json',
+    type: 'jsonb',
     nullable: true,
     comment: 'Giá trị mới sau khi thay đổi',
   })

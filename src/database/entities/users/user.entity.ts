@@ -6,6 +6,7 @@ import {
   UpdateDateColumn,
   DeleteDateColumn,
   Index,
+  Unique,
   OneToMany,
   OneToOne,
 } from 'typeorm';
@@ -15,6 +16,7 @@ import { PatientProfile } from '../patients/patient_profile.entity';
 import { DoctorProfile } from '../doctors/doctor_profile.entity';
 
 @Entity({ name: 'users' })
+@Unique('uq_users_phone', ['phone'])
 export class User {
   @PrimaryGeneratedColumn({ type: 'bigint' })
   id: string;
@@ -37,14 +39,20 @@ export class User {
   fullName: string;
 
   /** Số điện thoại (duy nhất dùng để định danh tài khoản) */
-  @Index('uq_users_phone', { unique: true })
   @Column({
     name: 'phone',
     type: 'varchar',
     length: 30,
-    unique: true,
   })
   phone: string;
+
+  /** Mật khẩu đã băm bằng bcrypt */
+  @Column({
+    name: 'password_hash',
+    type: 'varchar',
+    length: 255,
+  })
+  passwordHash: string;
 
   /** Ngày sinh */
   @Column({
@@ -54,14 +62,14 @@ export class User {
   })
   dateOfBirth: Date | null;
 
-  /** Giới tính: MALE, FEMALE, OTHER */
+  /** Giới tính: MALE, FEMALE hoặc OTHER */
   @Column({
     name: 'gender',
     type: 'enum',
     enum: Gender,
-    nullable: false,
+    nullable: true,
   })
-  gender: Gender;
+  gender: Gender | null;
 
   /** Địa chỉ cư trú */
   @Column({
@@ -75,8 +83,8 @@ export class User {
   @Index('idx_users_status')
   @Column({
     name: 'status',
-    type: 'enum',
-    enum: UserStatus,
+    type: 'varchar',
+    length: 50,
     default: UserStatus.ACTIVE,
   })
   status: UserStatus;

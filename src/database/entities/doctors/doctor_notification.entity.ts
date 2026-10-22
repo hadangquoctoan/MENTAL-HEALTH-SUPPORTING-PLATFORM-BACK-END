@@ -12,7 +12,11 @@ import { DoctorNotificationType } from '../../../common/enums';
 import { User } from '../users/user.entity';
 
 @Entity({ name: 'doctor_notifications' })
-@Index('idx_doctor_notifications_composite', ['doctorId', 'isRead', 'createdAt'])
+@Index('idx_doctor_notifications_composite', [
+  'doctorId',
+  'isRead',
+  'createdAt',
+])
 export class DoctorNotification {
   @PrimaryGeneratedColumn({ type: 'bigint' })
   id: string;

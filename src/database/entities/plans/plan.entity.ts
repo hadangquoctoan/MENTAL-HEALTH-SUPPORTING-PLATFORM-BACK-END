@@ -6,6 +6,7 @@ import {
   UpdateDateColumn,
   DeleteDateColumn,
   Index,
+  Check,
   ManyToOne,
   OneToMany,
   JoinColumn,
@@ -16,6 +17,10 @@ import { PlanAction } from './plan_action.entity';
 
 @Entity({ name: 'plans' })
 @Index('idx_plans_patient_status', ['patientId', 'status'])
+@Check(
+  'chk_plans_date_range',
+  '"end_date" IS NULL OR "end_date" >= "start_date"',
+)
 export class Plan {
   @PrimaryGeneratedColumn({ type: 'bigint' })
   id: string;

@@ -21,7 +21,6 @@ export class PatientProfile {
   @Column({
     name: 'user_id',
     type: 'bigint',
-    unique: true,
   })
   userId: string;
 

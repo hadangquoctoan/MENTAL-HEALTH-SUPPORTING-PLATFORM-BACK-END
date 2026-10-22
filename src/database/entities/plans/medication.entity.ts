@@ -6,6 +6,7 @@ import {
   UpdateDateColumn,
   DeleteDateColumn,
   Index,
+  Check,
   ManyToOne,
   JoinColumn,
 } from 'typeorm';
@@ -14,12 +15,16 @@ import { User } from '../users/user.entity';
 @Entity({ name: 'medications' })
 @Index('idx_medications_dates', ['startDate', 'endDate'])
 @Index('idx_medications_patient_start', ['patientId', 'startDate'])
+@Check(
+  'chk_medications_date_range',
+  '"end_date" IS NULL OR "end_date" >= "start_date"',
+)
 export class Medication {
   @PrimaryGeneratedColumn({ type: 'bigint' })
   id: string;
 
   /** ID của bệnh nhân sử dụng thuốc */
-  @Index('idx_medications_patient_id')
+  @Index('idx_medications_patient')
   @Column({
     name: 'patient_id',
     type: 'bigint',

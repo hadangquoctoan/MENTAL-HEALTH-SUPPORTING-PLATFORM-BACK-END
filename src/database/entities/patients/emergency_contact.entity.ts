@@ -18,7 +18,7 @@ export class EmergencyContact {
   id: string;
 
   /** ID của bệnh nhân sở hữu liên hệ khẩn cấp */
-  @Index('idx_emergency_contacts_patient_id')
+  @Index('idx_emergency_contacts_patient')
   @Column({
     name: 'patient_id',
     type: 'bigint',

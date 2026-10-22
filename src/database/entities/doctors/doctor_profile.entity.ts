@@ -6,6 +6,7 @@ import {
   UpdateDateColumn,
   DeleteDateColumn,
   Index,
+  Unique,
   OneToOne,
   ManyToOne,
   JoinColumn,
@@ -14,6 +15,7 @@ import { ApprovalStatus } from '../../../common/enums';
 import { User } from '../users/user.entity';
 
 @Entity({ name: 'doctor_profiles' })
+@Unique('uq_doctor_profiles_license', ['licenseNumber'])
 export class DoctorProfile {
   @PrimaryGeneratedColumn({ type: 'bigint' })
   id: string;
@@ -23,17 +25,14 @@ export class DoctorProfile {
   @Column({
     name: 'user_id',
     type: 'bigint',
-    unique: true,
   })
   userId: string;
 
   /** Số chứng chỉ hành nghề y tế (duy nhất) */
-  @Index('uq_doctor_profiles_license', { unique: true })
   @Column({
     name: 'license_number',
     type: 'varchar',
     length: 100,
-    unique: true,
   })
   licenseNumber: string;
 

@@ -30,8 +30,9 @@ export class CheckIn {
     name: 'mood',
     type: 'varchar',
     length: 50,
+    nullable: true,
   })
-  mood: string;
+  mood: string | null;
 
   /** Mức độ căng thẳng do bác sĩ đánh giá sau khi xem xét check-in của bệnh nhân */
   @Column({

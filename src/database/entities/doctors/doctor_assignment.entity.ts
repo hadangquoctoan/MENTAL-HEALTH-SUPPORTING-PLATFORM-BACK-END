@@ -6,6 +6,7 @@ import {
   UpdateDateColumn,
   DeleteDateColumn,
   Index,
+  Check,
   ManyToOne,
   OneToOne,
   JoinColumn,
@@ -15,6 +16,22 @@ import { User } from '../users/user.entity';
 
 @Entity({ name: 'doctor_assignments' })
 @Index('idx_doc_assign_composite', ['doctorId', 'patientId', 'status'])
+@Index('uq_doctor_assignments_active_patient', ['patientId'], {
+  unique: true,
+  where: `"status" = 'ACTIVE' AND "deleted_at" IS NULL`,
+})
+@Check(
+  'chk_doctor_assignments_active_ended',
+  `("status" = 'ACTIVE' AND "ended_at" IS NULL) OR "status" <> 'ACTIVE'`,
+)
+@Check(
+  'chk_doctor_assignments_closed_ended',
+  `"status" = 'ACTIVE' OR "ended_at" IS NOT NULL`,
+)
+@Check(
+  'chk_doctor_assignments_dates',
+  '"ended_at" IS NULL OR "assigned_at" <= "ended_at"',
+)
 export class DoctorAssignment {
   @PrimaryGeneratedColumn({ type: 'bigint' })
   id: string;
@@ -41,7 +58,6 @@ export class DoctorAssignment {
     name: 'previous_assignment_id',
     type: 'bigint',
     nullable: true,
-    unique: true,
   })
   previousAssignmentId: string | null;
 
