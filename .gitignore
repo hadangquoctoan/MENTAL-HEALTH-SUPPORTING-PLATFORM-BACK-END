@@ -105,3 +105,7 @@ $RECYCLE.BIN/
 
 # Linux
 .directory
+
+.qoder
+
+AGENTS.md
