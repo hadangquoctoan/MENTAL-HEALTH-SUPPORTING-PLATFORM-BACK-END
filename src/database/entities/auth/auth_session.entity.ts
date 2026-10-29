@@ -63,7 +63,10 @@ export class AuthSession {
     onDelete: 'CASCADE',
     onUpdate: 'CASCADE',
   })
-  @JoinColumn({ name: 'user_id' })
+  @JoinColumn({
+    name: 'user_id',
+    foreignKeyConstraintName: 'fk_auth_sessions_user',
+  })
   user: User;
 
   @OneToMany(() => AuthRefreshToken, (token) => token.session)

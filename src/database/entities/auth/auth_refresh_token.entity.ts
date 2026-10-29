@@ -62,7 +62,10 @@ export class AuthRefreshToken {
     onDelete: 'CASCADE',
     onUpdate: 'CASCADE',
   })
-  @JoinColumn({ name: 'session_id' })
+  @JoinColumn({
+    name: 'session_id',
+    foreignKeyConstraintName: 'fk_auth_refresh_tokens_session',
+  })
   session: AuthSession;
 
   @ManyToOne(() => AuthRefreshToken, {
@@ -70,6 +73,9 @@ export class AuthRefreshToken {
     onUpdate: 'CASCADE',
     nullable: true,
   })
-  @JoinColumn({ name: 'replaced_by_id' })
+  @JoinColumn({
+    name: 'replaced_by_id',
+    foreignKeyConstraintName: 'fk_auth_refresh_tokens_replaced_by',
+  })
   replacedBy: AuthRefreshToken | null;
 }
