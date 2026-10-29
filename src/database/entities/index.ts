@@ -25,6 +25,8 @@ import { PatientStreak } from './gamification/patient_streak.entity';
 import { StreakLog } from './gamification/streak_log.entity';
 import { StreakMilestone } from './gamification/streak_milestone.entity';
 import { PatientAchievement } from './gamification/patient_achievement.entity';
+import { AuthSession } from './auth/auth_session.entity';
+import { AuthRefreshToken } from './auth/auth_refresh_token.entity';
 
 export const entities = [
   AuditLog,
@@ -54,6 +56,8 @@ export const entities = [
   StreakLog,
   StreakMilestone,
   PatientAchievement,
+  AuthSession,
+  AuthRefreshToken,
 ];
 
 export * from './audit-logs/audit-log.entity';
@@ -83,3 +87,5 @@ export * from './gamification/patient_streak.entity';
 export * from './gamification/streak_log.entity';
 export * from './gamification/streak_milestone.entity';
 export * from './gamification/patient_achievement.entity';
+export * from './auth/auth_session.entity';
+export * from './auth/auth_refresh_token.entity';
